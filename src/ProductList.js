@@ -1,16 +1,23 @@
-import React from 'react';
-// import { connect } from 'react-redux';
-import ProductItem from './ProductItem';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+// import ProductItem from './ProductItem';
 import { Col, Card } from 'reactstrap';
+import { getData } from './actions';
 
-const ProductList = (props) => {
+function ProductList({ dispatch,  ...props}) {
+    useEffect(() => {
+        getData({ dispatch });
+    }, []);
+
     return (
         <Col sm="6">
             <Card className="productcard">
-                <ProductItem />
+                {/* {data && data.map((item, index) => (
+                    <ProductItem item={item} />
+                ))} */}
             </Card>
         </Col>
     )
 }
 
-export default ProductList;
+export default connect()(ProductList);

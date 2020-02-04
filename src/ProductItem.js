@@ -1,20 +1,20 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
-const ProductItem = (props) => {
+function ProductItem ({item, dispatch}) {
     return (
         <CardBody>
             <div className="title">
-                <CardTitle><h4>Product Name</h4></CardTitle>
-                <CardSubtitle className="price">Price</CardSubtitle>
+                <CardTitle><h4>{item.name}</h4></CardTitle>
+                <CardSubtitle className="price">{item.price}</CardSubtitle>
             </div>
-            <CardText>You can specify some description text in here.</CardText>
-            <CardSubtitle className="furniturestyles">Furniture Styles</CardSubtitle>
-            <CardSubtitle className="deliverydays">Delivery Days</CardSubtitle>
+            <CardText>{item.description}</CardText>
+            <CardSubtitle className="furniturestyles">{item.furniture.style}</CardSubtitle>
+            <CardSubtitle className="deliverydays">{item.delivery_time}</CardSubtitle>
         </CardBody>
 
     )
 }
 
-export default ProductItem;
+export default connect()(ProductItem);
